@@ -1,0 +1,612 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* ==========================================================================
+   1. Design Tokens
+   ========================================================================== */
+:root {
+  --bg:            #0b0b10;
+  --bg-nav:        rgba(11, 11, 16, 0.88);
+  --bg-card-hover: rgba(255, 255, 255, 0.03);
+
+  --text-hi:  #f0f0f5;
+  --text-md:  #8892a4;
+  --text-lo:  #4a5568;
+
+  --accent:      #64ffda;
+  --accent-dim:  rgba(100, 255, 218, 0.07);
+  --accent-glow: rgba(100, 255, 218, 0.22);
+
+  --border: rgba(255, 255, 255, 0.07);
+
+  --font:      'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-head: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono:      'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --max-w:  1400px;
+  --pad-x:  64px;
+  --nav-h:  72px;
+}
+
+/* ==========================================================================
+   2. Reset & Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+  background-attachment: fixed;
+  color: var(--text-md);
+  font-family: var(--font);
+  font-size: 22px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient accent glow — fixed so it doesn't scroll */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: -180px;
+  right: -180px;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(100, 255, 218, 0.055) 0%, transparent 65%);
+}
+
+body::after {
+  bottom: -200px;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(100, 180, 255, 0.035) 0%, transparent 65%);
+}
+a  { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--text-lo); border-radius: 99px; }
+
+/* ==========================================================================
+   3. Top Navbar
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-hi);
+  letter-spacing: -1px;
+}
+.nav-logo span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 40px; }
+
+.nav-link {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-md);
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+.nav-link:hover, .nav-link.active { color: var(--text-hi); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-md);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Mobile drawer */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  padding: 16px var(--pad-x) 24px;
+  gap: 4px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+}
+.mobile-menu.open { display: flex; }
+.mobile-link {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-md);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.mobile-link:last-child { border-bottom: none; }
+.mobile-link:hover { color: var(--accent); }
+
+/* ==========================================================================
+   4. Page Layout
+   ========================================================================== */
+.site-main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  padding-top: var(--nav-h);
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   5. Hero Section
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 0 80px;
+}
+
+.hero-greeting {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-name {
+  font-family: var(--font-head);
+  font-size: 108px;
+  font-weight: 800;
+  color: var(--text-hi);
+  letter-spacing: -5px;
+  line-height: 1.0;
+  margin-bottom: 20px;
+}
+
+.hero-role {
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--text-md);
+  margin-bottom: 10px;
+}
+
+.hero-desc {
+  font-size: 26px;
+  color: var(--text-md);
+  max-width: 680px;
+  line-height: 1.75;
+  margin-bottom: 48px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0b0b10;
+  transition: box-shadow 0.25s, transform 0.2s;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 32px var(--accent-glow);
+  transform: translateY(-2px);
+}
+.btn-primary svg { transition: transform 0.2s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+
+.btn-ghost {
+  color: var(--text-hi);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.hero-socials { display: flex; gap: 24px; }
+.social-link {
+  color: var(--text-lo);
+  transition: color 0.2s, transform 0.2s;
+}
+.social-link:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   6. Section Layout
+   ========================================================================== */
+.section {
+  padding: 100px 0;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 56px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 400px;
+}
+
+/* ==========================================================================
+   7. About Section
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 55% 40%;
+  gap: 5%;
+  align-items: center;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 24px;
+  line-height: 1.85;
+  color: var(--text-md);
+}
+.hl { color: var(--text-hi); font-weight: 500; }
+
+.skills-block {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.skills-label {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  margin-bottom: 16px;
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tag {
+  font-size: 14px;
+  font-family: var(--mono);
+  padding: 9px 20px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  color: var(--text-md);
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+.tag.accent {
+  color: var(--accent);
+  border-color: rgba(100, 255, 218, 0.25);
+  background: var(--accent-dim);
+}
+
+/* ==========================================================================
+   8. Card Component
+   ========================================================================== */
+.card-list { display: flex; flex-direction: column; gap: 0; }
+
+.card {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 40px;
+  padding: 28px 20px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border);
+}
+
+.card-date {
+  font-size: 16px;
+  font-family: var(--mono);
+  color: var(--text-lo);
+  padding-top: 5px;
+  line-height: 1.5;
+}
+
+.card-body { display: flex; flex-direction: column; gap: 5px; }
+
+.card-title {
+  font-family: var(--font-head);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-hi);
+  transition: color 0.2s;
+  letter-spacing: -1px;
+}
+.card-title--link {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.card:hover .card-title { color: var(--accent); }
+
+.arrow-icon {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  opacity: 0;
+  transform: translate(-2px, 2px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.card:hover .arrow-icon { opacity: 1; transform: translate(0, 0); }
+
+.card-org {
+  font-size: 20px;
+  color: var(--text-lo);
+}
+
+.card-desc {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-desc li {
+  font-size: 21px;
+  color: var(--text-md);
+  padding-left: 24px;
+  position: relative;
+  line-height: 1.7;
+}
+.card-desc li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-lo);
+}
+
+.card-note {
+  font-size: 17px;
+  color: var(--text-lo);
+  font-family: var(--mono);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   9. Contact Section
+   ========================================================================== */
+.section--contact {
+  text-align: center;
+  padding: 140px 0;
+}
+.contact-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.contact-heading {
+  font-family: var(--font-head);
+  font-size: 76px;
+  font-weight: 800;
+  color: var(--text-hi);
+  letter-spacing: -4px;
+  line-height: 1.1;
+}
+.contact-sub {
+  font-size: 24px;
+  color: var(--text-md);
+  max-width: 480px;
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   10. Footer
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px var(--pad-x);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.site-footer p {
+  font-size: 15px;
+  color: var(--text-lo);
+  font-family: var(--mono);
+}
+.site-footer span { color: var(--text-md); }
+
+/* ==========================================================================
+   11. Responsive
+   ========================================================================== */
+
+/* Large tablet / small desktop */
+@media (max-width: 1100px) {
+  :root { --pad-x: 48px; }
+
+  .hero-name  { font-size: 80px; letter-spacing: -3px; }
+  .hero-role  { font-size: 26px; }
+  .hero-desc  { font-size: 22px; }
+  .contact-heading { font-size: 60px; }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  :root { --pad-x: 36px; }
+
+  body { font-size: 18px; }
+
+  .about-grid {
+    grid-template-columns: 100%;
+    gap: 40px;
+  }
+
+  .hero-name  { font-size: 64px; letter-spacing: -2px; }
+  .hero-role  { font-size: 22px; }
+  .hero-desc  { font-size: 20px; }
+
+  .card-title   { font-size: 22px; }
+  .card-org     { font-size: 17px; }
+  .card-desc li { font-size: 17px; }
+  .about-text   { font-size: 20px; }
+
+  .contact-heading { font-size: 48px; letter-spacing: -2px; }
+  .contact-sub     { font-size: 20px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root { --pad-x: 24px; }
+
+  body { font-size: 16px; }
+
+  .nav-links   { display: none; }
+  .menu-toggle { display: flex; }
+
+  .hero { padding: 80px 0 48px; }
+  .hero-name    { font-size: 44px; letter-spacing: -2px; }
+  .hero-role    { font-size: 18px; }
+  .hero-desc    { font-size: 17px; max-width: 100%; }
+  .hero-greeting { font-size: 11px; }
+
+  .section { padding: 60px 0; }
+  .section-label { font-size: 11px; margin-bottom: 36px; }
+  .section-label::after { display: none; }
+  .section--contact { padding: 72px 0; }
+
+  .contact-heading { font-size: 36px; letter-spacing: -1px; }
+  .contact-sub     { font-size: 16px; }
+
+  .about-text   { font-size: 17px; }
+  .skills-label { font-size: 11px; }
+  .tag          { font-size: 12px; padding: 7px 14px; }
+
+  .card {
+    grid-template-columns: 100%;
+    gap: 6px;
+    padding: 18px 14px;
+  }
+  .card-date    { padding-top: 0; font-size: 12px; }
+  .card-title   { font-size: 18px; }
+  .card-org     { font-size: 14px; }
+  .card-desc li { font-size: 15px; }
+  .card-note    { font-size: 13px; }
+
+  .btn-primary, .btn-ghost { font-size: 11px; padding: 14px 24px; }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  :root { --pad-x: 18px; }
+
+  body { font-size: 15px; }
+
+  .hero-name    { font-size: 36px; letter-spacing: -1px; }
+  .hero-role    { font-size: 16px; }
+  .hero-desc    { font-size: 15px; }
+
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .btn-primary, .btn-ghost { justify-content: center; width: 100%; }
+
+  .mobile-menu  { padding: 16px var(--pad-x) 24px; }
+
+  .card-title   { font-size: 17px; }
+  .card-desc li { font-size: 14px; }
+
+  .contact-heading { font-size: 30px; }
+  .contact-sub     { font-size: 15px; }
+}
