@@ -387,13 +387,14 @@ ul { list-style: none; }
   padding: 28px 20px;
   border-radius: 8px;
   border: 1px solid transparent;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
   color: inherit;
+  transform: scale(1);
 }
 .card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border);
+  transform: scale(1.015);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(100, 255, 218, 0.015);
 }
 
 .card-date {
