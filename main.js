@@ -1,41 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const sections  = document.querySelectorAll('.section, .hero');
-  const navLinks  = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.section, .hero');
+  const navLinks = document.querySelectorAll('.nav-link');
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
-  // --- ScrollSpy ---
-  const onScroll = () => {
-    const scrollY = window.scrollY;
-    let current = 'hero';
-
-    sections.forEach(section => {
-      if (scrollY >= section.offsetTop - 120) {
-        current = section.getAttribute('id');
-      }
-    });
-
+  const setActive = id => {
     navLinks.forEach(link => {
-      link.classList.toggle(
-        'active',
-        link.getAttribute('href') === `#${current}`
-      );
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
     });
   };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    {
+      rootMargin: '-72px 0px -45% 0px',
+      threshold: 0
+    }
+  );
+  sections.forEach(section => observer.observe(section));
 
-  // --- Mobile menu toggle ---
+  const setMenu = open => {
+    mobileMenu.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+  };
+
   menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
+    setMenu(!mobileMenu.classList.contains('open'));
   });
 
-  // Close mobile menu when a link is clicked
   mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-    });
+    link.addEventListener('click', () => setMenu(false));
   });
 });
