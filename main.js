@@ -11,15 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  const visibility = new Map();
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) setActive(entry.target.id);
+        visibility.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
       });
+      let activeId = '';
+      let maxRatio = 0;
+      visibility.forEach((ratio, id) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          activeId = id;
+        }
+      });
+      if (activeId) setActive(activeId);
     },
     {
-      rootMargin: '-72px 0px -45% 0px',
-      threshold: 0
+      rootMargin: '-20% 0px -55% 0px',
+      threshold: [0, 0.25, 0.5, 0.75, 1]
     }
   );
   sections.forEach(section => observer.observe(section));
@@ -27,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const setMenu = open => {
     mobileMenu.classList.toggle('open', open);
     menuToggle.setAttribute('aria-expanded', String(open));
+    if (!open) menuToggle.focus();
   };
 
   menuToggle.addEventListener('click', () => {
@@ -35,5 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => setMenu(false));
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMenu(false);
+    }
   });
 });

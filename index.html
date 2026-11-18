@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio M. Faqih Dwinanda - Informatics Engineering Undergraduate">
-  <title>Dwinan Portfolio</title>
+  <meta name="description" content="Portfolio of M. Faqih Dwinanda, Informatics Engineering undergraduate at Universitas Lampung. Projects, experience, and contact.">
+  <meta name="theme-color" content="#0b0b10">
+  <meta property="og:title" content="M. Faqih Dwinanda — Portfolio">
+  <meta property="og:description" content="Informatics Engineering undergraduate building clean, purposeful digital experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio-dwinan.vercel.app/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="M. Faqih Dwinanda — Portfolio">
+  <meta name="twitter:description" content="Informatics Engineering undergraduate building clean, purposeful digital experiences.">
+  <title>M. Faqih Dwinanda — Portfolio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <header class="navbar" id="navbar">
     <nav class="nav-inner">
@@ -36,7 +46,7 @@
     </div>
   </header>
 
-  <main class="site-main">
+  <main class="site-main" id="main-content">
 
     <section id="hero" class="hero">
       <p class="hero-greeting">Hi, I'm</p>
@@ -67,11 +77,10 @@
       <div class="about-grid">
         <div class="about-text">
           <p>
-            I'm an <span class="hl">Informatics Engineering</span> student at Universitas Lampung with a
-            strong <span class="hl">interest</span> in software development & system design.
-            <span class="hl">Adaptable</span>, eager to learn new things, and capable of
-            working <span class="hl">collaboratively</span> in both academic and practical
-            <span class="hl">environments</span>.
+            I'm an <strong class="hl">Informatics Engineering</strong> undergraduate at Universitas Lampung
+            (GPA 3.96/4.00) focused on <strong class="hl">web development</strong> and
+            <strong class="hl">system design</strong>. I build and maintain projects from UI to database,
+            and I work well in <strong class="hl">team-based</strong> academic and organizational settings.
           </p>
         </div>
         <div class="skills-block">
@@ -109,12 +118,12 @@
         <div class="card">
           <span class="card-date">Mar 2026 — Present</span>
           <div class="card-body">
-            <h3 class="card-title">Chief Executive, Himatro on Socmed</h3>
-            <p class="card-org">Himpunan Mahasiswa Teknik Elektro (Himatro)</p>
+            <h3 class="card-title">Program Lead, Himatro on Social Media</h3>
+            <p class="card-org">Himpunan Mahasiswa Teknik Elektro (Himatro), Universitas Lampung</p>
             <ul class="card-desc">
-              <li>Led the "Himatro on Socmed" program to manage and publish organizational information across digital platforms.</li>
-              <li>Designed social media content and website wireframes using Figma to enhance digital presence.</li>
-              <li>Managed the Himatro website via WordPress to support organizational branding.</li>
+              <li>Led "Himatro on Social Media" to manage and publish organizational information across digital platforms.</li>
+              <li>Designed social media content and website wireframes in Figma.</li>
+              <li>Managed the Himatro website on WordPress to support organizational branding.</li>
             </ul>
           </div>
         </div>
@@ -217,20 +226,31 @@
       <div class="contact-inner">
         <p class="contact-heading">Turning ideas into <span>reality.</span></p>
         <p class="contact-sub">
-          Looking to collaborate or start a conversation?
-          <br>I’m just one message away.
+          Open to collaboration, projects, and conversations.
+          <br>Reach me by email or on my social profiles.
         </p>
-        <a href="mailto:faqih.nanda11@gmail.com" class="btn-primary" id="contact-email-btn">
-          Send an Email
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
+        <div class="contact-actions">
+          <a href="mailto:faqih.nanda11@gmail.com" class="btn-primary" id="contact-email-btn">
+            Send an Email
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
+          <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub</a>
+        </div>
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p> <span> &copy; Dwinan</span>, 2026</p>
+    <div class="footer-inner">
+      <p><span>&copy; 2026 M. Faqih Dwinanda</span></p>
+      <div class="footer-links">
+        <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:faqih.nanda11@gmail.com">Email</a>
+      </div>
+    </div>
   </footer>
 
   <script src="main.js"></script>
