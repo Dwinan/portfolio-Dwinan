@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of M. Faqih Dwinanda, Informatics Engineering undergraduate at Universitas Lampung. Projects, experience, and contact.">
-  <meta name="theme-color" content="#0b0b10">
+  <meta name="theme-color" content="#020607">
   <meta property="og:title" content="M. Faqih Dwinanda — Portfolio">
   <meta property="og:description" content="Informatics Engineering undergraduate building clean, purposeful digital experiences.">
   <meta property="og:type" content="website">
@@ -21,6 +21,7 @@
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
   <header class="navbar" id="navbar">
     <nav class="nav-inner">
@@ -49,10 +50,13 @@
   <main class="site-main" id="main-content">
 
     <section id="hero" class="hero">
+      <canvas class="hero-gradient-canvas" id="hero-gradient" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="hero-greeting">Hi, I'm</p>
-          <h1 class="hero-name">M. Faqih Dwinanda</h1>
+          <h1 class="hero-name">
+            <span class="hero-intro">Hi, I'm</span>
+            M. Faqih Dwinanda
+          </h1>
           <h2 class="hero-role">Informatics Engineering Undergraduate</h2>
           <p class="hero-desc">
             &mdash; Building clean, purposeful digital experiences.
@@ -260,6 +264,7 @@
     </div>
   </footer>
 
+  <script src="gradient-engine.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
