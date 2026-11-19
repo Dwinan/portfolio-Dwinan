@@ -16,7 +16,7 @@ A dependency-free static portfolio built around a Swiss International typographi
 ## Directory Structure
 
 ```text
-portfolio-dwinan-v2/
+portfolio-dwinan-v4/
 ├── index.html
 ├── README.md
 ├── docs/

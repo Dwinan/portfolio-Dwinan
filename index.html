@@ -51,7 +51,16 @@
   <header class="masthead" id="navbar">
     <nav class="masthead-inner" aria-label="Primary navigation">
       <div class="masthead-brand">
-        <a href="#hero" class="nav-logo" aria-label="M. Faqih Dwinanda, back to top">Dwi<span>nan.</span></a>
+        <a href="#hero" class="nav-logo" id="brand-logo" aria-label="M. Faqih Dwinanda, back to top" data-cursor="TOP" data-magnetic>
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+              <rect class="brand-frame" x="1" y="1" width="30" height="30" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
+              <path class="brand-glyph" d="M8.5 8h6.2c4.6 0 7.6 3.1 7.6 8s-3 8-7.6 8H8.5V8zm3.4 3v10h2.7c2.6 0 4.2-1.8 4.2-5s-1.6-5-4.2-5h-2.7z" fill="currentColor"/>
+              <rect class="brand-dot" x="23" y="21" width="3.5" height="3.5" fill="var(--accent)"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">Dwi<span class="brand-accent">nan.</span></span>
+        </a>
         <span class="masthead-clock" aria-label="Local time in Bandar Lampung">
           <span class="status-sq" aria-hidden="true"></span>
           <span>ID</span>
@@ -75,9 +84,16 @@
           aria-label="Switch color edition between Obsidian and Paper"
           aria-pressed="false"
           data-cursor="THEME"
+          data-magnetic
         >
-          <span class="theme-toggle-key" aria-hidden="true">T</span>
+          <span class="theme-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/>
+            </svg>
+          </span>
           <span class="theme-toggle-text" id="theme-toggle-text">PAPER</span>
+          <span class="theme-toggle-key" aria-hidden="true">T</span>
         </button>
 
         <button
@@ -114,6 +130,11 @@
 
     <!-- Hero -->
     <section id="hero" class="hero" aria-labelledby="hero-heading">
+      <!-- Featherweight GPU-composited mist fallback (default on mobile; enhanced with WebGL on capable desktop) -->
+      <div class="hero-mist" aria-hidden="true">
+        <span class="mist-orb mist-orb--a"></span>
+        <span class="mist-orb mist-orb--b"></span>
+      </div>
       <canvas class="hero-gradient-canvas" id="hero-gradient" aria-hidden="true"></canvas>
 
       <div class="container hero-grid">
@@ -123,29 +144,31 @@
           <span class="meta-live"><span class="status-sq" aria-hidden="true"></span>OPEN TO COLLABORATION</span>
         </div>
 
-        <h1 class="hero-display" id="hero-heading">
-          <span class="display-line">
-            <span class="display-mask">M. FAQIH</span>
-          </span>
-          <span class="display-line display-line--offset">
-            <span class="hero-intro-tag" aria-hidden="true">HI, I'M &mdash;</span>
-            <span class="display-mask">DWINANDA</span>
-          </span>
-        </h1>
+        <div class="hero-title-group">
+          <p class="hero-intro-tag">Hi, I'm &mdash;</p>
+          <h1 class="hero-display" id="hero-heading">
+            <span class="display-line">
+              <span class="display-mask">M. FAQIH</span>
+            </span>
+            <span class="display-line display-line--second">
+              <span class="display-mask">DWINANDA</span>
+            </span>
+          </h1>
+        </div>
 
         <hr class="hairline hairline--draw" aria-hidden="true">
 
         <div class="hero-spread">
           <div class="hero-editorial">
-            <p class="hero-kicker"><span class="sr-only">Hi, I'm M. Faqih Dwinanda. </span>Informatics Engineering Undergraduate</p>
+            <p class="hero-kicker">Informatics Engineering Undergraduate</p>
             <p class="hero-desc">&mdash; Building clean, purposeful digital experiences.</p>
 
             <div class="hero-actions">
-              <a href="#contact" class="btn btn--solid" data-cursor="CONNECT">
+              <a href="#contact" class="btn btn--solid" data-cursor="CONNECT" data-magnetic>
                 <span class="btn-roller" data-text="Let's Connect">Let's Connect</span>
                 <svg class="btn-arrow" aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
-              <a href="#projects" class="btn btn--rule" data-cursor="WORK">
+              <a href="#projects" class="btn btn--rule" data-cursor="WORK" data-magnetic>
                 <span class="btn-roller" data-text="See my work">See my work</span>
               </a>
             </div>
@@ -153,18 +176,24 @@
             <div class="hero-foot">
               <ul class="social-strip" aria-label="Social links">
                 <li>
-                  <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="text-link" data-cursor="GITHUB">
-                    GitHub <span aria-hidden="true">&nearr;</span>
+                  <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="social-chip" data-cursor="GITHUB" data-magnetic>
+                    <svg class="social-ico" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span>GitHub</span>
+                    <span class="social-ext" aria-hidden="true">&nearr;</span>
                   </a>
                 </li>
                 <li>
-                  <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="text-link" data-cursor="LINKEDIN">
-                    LinkedIn <span aria-hidden="true">&nearr;</span>
+                  <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="social-chip" data-cursor="LINKEDIN" data-magnetic>
+                    <svg class="social-ico" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    <span>LinkedIn</span>
+                    <span class="social-ext" aria-hidden="true">&nearr;</span>
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:faqih.nanda11@gmail.com" class="text-link" data-cursor="MAIL">
-                    Email <span aria-hidden="true">&nearr;</span>
+                  <a href="mailto:faqih.nanda11@gmail.com" class="social-chip" data-cursor="MAIL" data-magnetic>
+                    <svg class="social-ico" aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="1"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>Email</span>
+                    <span class="social-ext" aria-hidden="true">&nearr;</span>
                   </a>
                 </li>
               </ul>
@@ -175,7 +204,7 @@
             </div>
           </div>
 
-          <figure class="portrait-plate" data-parallax="18">
+          <figure class="portrait-plate">
             <div class="portrait-frame">
               <picture>
                 <source srcset="assets/images/dwinan.webp" type="image/webp">
@@ -235,7 +264,10 @@
 
           <div class="spec-block reveal">
             <div class="spec-header">
-              <h3 class="spec-heading">Technical Specification</h3>
+              <div class="spec-title-wrap">
+                <h3 class="spec-heading">Technical Specification</h3>
+                <span class="spec-readout" id="spec-readout" aria-live="polite">13 ITEMS INDEXED</span>
+              </div>
               <div class="spec-filters" role="group" aria-label="Filter technical skills">
                 <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
                 <button type="button" class="filter-btn" data-filter="language" aria-pressed="false">Languages</button>
@@ -244,19 +276,110 @@
             </div>
 
             <ul class="spec-matrix" id="spec-matrix" aria-label="Languages, tools, and frameworks">
-              <li class="spec-cell" data-cat="language"><span class="spec-num">01</span><span class="spec-cat">LANG</span><span class="spec-name">HTML</span></li>
-              <li class="spec-cell" data-cat="language"><span class="spec-num">02</span><span class="spec-cat">LANG</span><span class="spec-name">CSS</span></li>
-              <li class="spec-cell" data-cat="language"><span class="spec-num">03</span><span class="spec-cat">LANG</span><span class="spec-name">JavaScript</span></li>
-              <li class="spec-cell" data-cat="language"><span class="spec-num">04</span><span class="spec-cat">LANG</span><span class="spec-name">PHP</span></li>
-              <li class="spec-cell" data-cat="language"><span class="spec-num">05</span><span class="spec-cat">LANG</span><span class="spec-name">Python</span></li>
-              <li class="spec-cell" data-cat="language"><span class="spec-num">06</span><span class="spec-cat">LANG</span><span class="spec-name">Java</span></li>
-              <li class="spec-cell" data-cat="language"><span class="spec-num">07</span><span class="spec-cat">LANG</span><span class="spec-name">C++</span></li>
-              <li class="spec-cell" data-cat="tool"><span class="spec-num">08</span><span class="spec-cat">TOOL</span><span class="spec-name">Laravel</span></li>
-              <li class="spec-cell" data-cat="tool"><span class="spec-num">09</span><span class="spec-cat">TOOL</span><span class="spec-name">Git &amp; GitHub</span></li>
-              <li class="spec-cell" data-cat="tool"><span class="spec-num">10</span><span class="spec-cat">TOOL</span><span class="spec-name">Figma</span></li>
-              <li class="spec-cell" data-cat="tool"><span class="spec-num">11</span><span class="spec-cat">TOOL</span><span class="spec-name">MySQL</span></li>
-              <li class="spec-cell" data-cat="tool"><span class="spec-num">12</span><span class="spec-cat">TOOL</span><span class="spec-name">VS Code</span></li>
-              <li class="spec-cell" data-cat="tool"><span class="spec-num">13</span><span class="spec-cat">TOOL</span><span class="spec-name">WordPress</span></li>
+              <li class="spec-cell" data-cat="language" data-detail="Markup &amp; Semantic Structure" tabindex="0">
+                <span class="spec-num">01</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 8 3 12 7 16"/><polyline points="17 8 21 12 17 16"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+                </span>
+                <span class="spec-name">HTML</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="language" data-detail="Layout Systems &amp; Motion" tabindex="0">
+                <span class="spec-num">02</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="5"/><rect x="13" y="10" width="8" height="11"/><rect x="3" y="13" width="8" height="8"/></svg>
+                </span>
+                <span class="spec-name">CSS</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="language" data-detail="DOM, Async &amp; Interactive UI" tabindex="0">
+                <span class="spec-num">03</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H5a1 1 0 0 0-1 1v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a1 1 0 0 0 1 1h3"/><path d="M16 4h3a1 1 0 0 1 1 1v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a1 1 0 0 1-1 1h-3"/></svg>
+                </span>
+                <span class="spec-name">JavaScript</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="language" data-detail="Server-Side Web Logic" tabindex="0">
+                <span class="spec-num">04</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1"/><rect x="2" y="14" width="20" height="6" rx="1"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg>
+                </span>
+                <span class="spec-name">PHP</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="language" data-detail="Scripting &amp; Problem Solving" tabindex="0">
+                <span class="spec-num">05</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H8a3 3 0 0 0-3 3v3h7v2H6a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h2"/><path d="M12 21h4a3 3 0 0 0 3-3v-3h-7v-2h6a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3h-2"/></svg>
+                </span>
+                <span class="spec-name">Python</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="language" data-detail="Object-Oriented Architecture" tabindex="0">
+                <span class="spec-num">06</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+                </span>
+                <span class="spec-name">Java</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="language" data-detail="Algorithms &amp; Core Systems" tabindex="0">
+                <span class="spec-num">07</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12"/><path d="M9 1v5M15 1v5M9 18v5M15 18v5M1 9h5M1 15h5M18 9h5M18 15h5"/></svg>
+                </span>
+                <span class="spec-name">C++</span>
+                <span class="spec-cat">LANG</span>
+              </li>
+              <li class="spec-cell" data-cat="tool" data-detail="Full-Stack MVC Web Framework" tabindex="0">
+                <span class="spec-num">08</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </span>
+                <span class="spec-name">Laravel</span>
+                <span class="spec-cat">TOOL</span>
+              </li>
+              <li class="spec-cell" data-cat="tool" data-detail="Version Control &amp; Collaboration" tabindex="0">
+                <span class="spec-num">09</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 9v6M18 9a9 9 0 0 1-9 9"/></svg>
+                </span>
+                <span class="spec-name">Git &amp; GitHub</span>
+                <span class="spec-cat">TOOL</span>
+              </li>
+              <li class="spec-cell" data-cat="tool" data-detail="Wireframes &amp; Interface Design" tabindex="0">
+                <span class="spec-num">10</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg>
+                </span>
+                <span class="spec-name">Figma</span>
+                <span class="spec-cat">TOOL</span>
+              </li>
+              <li class="spec-cell" data-cat="tool" data-detail="Relational Schema &amp; CRUD" tabindex="0">
+                <span class="spec-num">11</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </span>
+                <span class="spec-name">MySQL</span>
+                <span class="spec-cat">TOOL</span>
+              </li>
+              <li class="spec-cell" data-cat="tool" data-detail="Primary Development Environment" tabindex="0">
+                <span class="spec-num">12</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                </span>
+                <span class="spec-name">VS Code</span>
+                <span class="spec-cat">TOOL</span>
+              </li>
+              <li class="spec-cell" data-cat="tool" data-detail="CMS &amp; Organizational Publishing" tabindex="0">
+                <span class="spec-num">13</span>
+                <span class="spec-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a14 14 0 0 1 3.5 9 14 14 0 0 1-3.5 9 14 14 0 0 1-3.5-9A14 14 0 0 1 12 3z"/></svg>
+                </span>
+                <span class="spec-name">WordPress</span>
+                <span class="spec-cat">TOOL</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -362,31 +485,31 @@
               </div>
             </div>
 
-            <!-- ArtSpace system diagram -->
-            <div class="specimen specimen--blueprint" aria-hidden="true">
+            <!-- Interactive ArtSpace system diagram -->
+            <div class="specimen specimen--blueprint" id="artspace-specimen">
               <div class="specimen-bar">
                 <span>SPECIMEN 01 / SCHEMA &amp; UI GRID</span>
-                <span>MVC + CRUD</span>
+                <span class="bp-status" id="bp-status">LAYER: ALL</span>
               </div>
               <div class="blueprint-stage">
-                <div class="bp-layer bp-layer--ui">
-                  <span class="bp-tag">UI / CATALOG</span>
-                  <div class="bp-wire-grid">
+                <button type="button" class="bp-layer bp-layer--ui is-selected" data-bp-layer="UI / BLADE + TAILWIND" data-cursor="INSPECT">
+                  <span class="bp-tag">01 &middot; UI / CATALOG</span>
+                  <div class="bp-wire-grid" aria-hidden="true">
                     <span></span><span></span><span></span>
                     <span class="bp-wide"></span><span></span>
                   </div>
-                </div>
-                <div class="bp-connector">
+                </button>
+                <div class="bp-connector" aria-hidden="true">
                   <span>ROUTES &middot; CONTROLLERS</span>
                 </div>
-                <div class="bp-layer bp-layer--db">
-                  <span class="bp-tag">MYSQL / ENTITIES</span>
+                <button type="button" class="bp-layer bp-layer--db" data-bp-layer="MYSQL / RELATIONAL CRUD" data-cursor="INSPECT">
+                  <span class="bp-tag">02 &middot; MYSQL / ENTITIES</span>
                   <div class="bp-tables">
                     <div><strong>users</strong><span>id &middot; role</span></div>
                     <div><strong>artworks</strong><span>id &middot; price</span></div>
                     <div><strong>orders</strong><span>fk &middot; status</span></div>
                   </div>
-                </div>
+                </button>
               </div>
             </div>
           </article>
@@ -547,23 +670,26 @@
             </div>
 
             <div class="contact-actions">
-              <a href="mailto:faqih.nanda11@gmail.com" class="btn btn--solid" data-cursor="MAIL">
+              <a href="mailto:faqih.nanda11@gmail.com" class="btn btn--solid" data-cursor="MAIL" data-magnetic>
                 <span class="btn-roller" data-text="Send an Email">Send an Email</span>
                 <svg class="btn-arrow" aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
 
-              <button type="button" class="btn btn--rule" id="copy-email-btn" data-cursor="COPY">
+              <button type="button" class="btn btn--rule" id="copy-email-btn" data-cursor="COPY" data-magnetic>
+                <svg class="btn-ico" id="copy-email-ico" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="1"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
                 <span class="btn-roller" id="copy-email-label" data-text="Copy Email">Copy Email</span>
               </button>
 
-              <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="btn btn--rule" data-cursor="LINKEDIN">
+              <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="btn btn--rule" data-cursor="LINKEDIN" data-magnetic>
+                <svg class="btn-ico" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 <span class="btn-roller" data-text="LinkedIn">LinkedIn</span>
-                <span aria-hidden="true">&nearr;</span>
+                <span class="btn-ext" aria-hidden="true">&nearr;</span>
               </a>
 
-              <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="btn btn--rule" data-cursor="GITHUB">
+              <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="btn btn--rule" data-cursor="GITHUB" data-magnetic>
+                <svg class="btn-ico" aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                 <span class="btn-roller" data-text="GitHub">GitHub</span>
-                <span aria-hidden="true">&nearr;</span>
+                <span class="btn-ext" aria-hidden="true">&nearr;</span>
               </a>
             </div>
           </div>
@@ -588,7 +714,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-  <script src="js/vendor/gradient-engine.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
