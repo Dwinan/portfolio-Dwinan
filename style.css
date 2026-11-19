@@ -68,14 +68,14 @@ ul { list-style: none; }
 
 ::selection { background: var(--accent); color: var(--accent-ink); }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb {
-  background: #0b3438;
-  border-radius: 99px;
-  border: 2px solid var(--bg);
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-::-webkit-scrollbar-thumb:hover { background: #13555c; }
+
+html::-webkit-scrollbar {
+  display: none;
+}
 
 /* Scroll progress -------------------------------------------------------- */
 .scroll-progress {
