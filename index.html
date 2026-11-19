@@ -1,252 +1,572 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfolio of M. Faqih Dwinanda, Informatics Engineering undergraduate at Universitas Lampung. Projects, experience, and contact.">
-  <meta name="theme-color" content="#020607">
+  <meta name="theme-color" content="#060808" id="meta-theme-color">
+
+  <link rel="canonical" href="https://portfolio-dwinan.vercel.app/">
   <meta property="og:title" content="M. Faqih Dwinanda — Portfolio">
   <meta property="og:description" content="Informatics Engineering undergraduate building clean, purposeful digital experiences.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://portfolio-dwinan.vercel.app/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://portfolio-dwinan.vercel.app/assets/images/dwinan.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="M. Faqih Dwinanda — Portfolio">
   <meta name="twitter:description" content="Informatics Engineering undergraduate building clean, purposeful digital experiences.">
+  <meta name="twitter:image" content="https://portfolio-dwinan.vercel.app/assets/images/dwinan.jpg">
+
   <title>M. Faqih Dwinanda — Portfolio</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem('dwinan-theme');
+        if (saved === 'paper' || saved === 'dark') {
+          document.documentElement.setAttribute('data-theme', saved);
+          const meta = document.getElementById('meta-theme-color');
+          if (meta) meta.setAttribute('content', saved === 'paper' ? '#F7F4EC' : '#060808');
+        }
+      } catch (_) {}
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
-  <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
-  <header class="navbar" id="navbar">
-    <nav class="nav-inner">
-      <a href="#hero" class="nav-logo">Dwi<span>nan.</span></a>
-      <div class="nav-links">
-        <a href="#about"      class="nav-link" id="nav-about">About</a>
-        <a href="#experience" class="nav-link" id="nav-experience">Experience</a>
-        <a href="#projects"   class="nav-link" id="nav-projects">Projects</a>
-        <a href="#education"  class="nav-link" id="nav-education">Education</a>
-        <a href="#contact"    class="nav-link" id="nav-contact">Contact</a>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
+    <span class="cursor-label" id="cursor-label"></span>
+  </div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Masthead -->
+  <header class="masthead" id="navbar">
+    <nav class="masthead-inner" aria-label="Primary navigation">
+      <div class="masthead-brand">
+        <a href="#hero" class="nav-logo" aria-label="M. Faqih Dwinanda, back to top">Dwi<span>nan.</span></a>
+        <span class="masthead-clock" aria-label="Local time in Bandar Lampung">
+          <span class="status-sq" aria-hidden="true"></span>
+          <span>ID</span>
+          <time id="local-clock" datetime="">--:--:-- WIB</time>
+        </span>
       </div>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+
+      <ol class="nav-links">
+        <li><a href="#about" class="nav-link" id="nav-about"><span class="nav-idx">01</span>About</a></li>
+        <li><a href="#experience" class="nav-link" id="nav-experience"><span class="nav-idx">02</span>Experience</a></li>
+        <li><a href="#projects" class="nav-link" id="nav-projects"><span class="nav-idx">03</span>Projects</a></li>
+        <li><a href="#education" class="nav-link" id="nav-education"><span class="nav-idx">04</span>Education</a></li>
+        <li><a href="#contact" class="nav-link" id="nav-contact"><span class="nav-idx">05</span>Contact</a></li>
+      </ol>
+
+      <div class="masthead-controls">
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Switch color edition between Obsidian and Paper"
+          aria-pressed="false"
+          data-cursor="THEME"
+        >
+          <span class="theme-toggle-key" aria-hidden="true">T</span>
+          <span class="theme-toggle-text" id="theme-toggle-text">PAPER</span>
+        </button>
+
+        <button
+          type="button"
+          class="menu-toggle"
+          id="menu-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="menu-toggle-label">Menu</span>
+          <span class="menu-toggle-bars" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
     </nav>
-    <!-- Mobile drawer -->
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="#about"      class="mobile-link">About</a>
-      <a href="#experience" class="mobile-link">Experience</a>
-      <a href="#projects"   class="mobile-link">Projects</a>
-      <a href="#education"  class="mobile-link">Education</a>
-      <a href="#contact"    class="mobile-link">Contact</a>
+
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <a href="#about" class="mobile-link"><span>01</span>About</a>
+      <a href="#experience" class="mobile-link"><span>02</span>Experience</a>
+      <a href="#projects" class="mobile-link"><span>03</span>Projects</a>
+      <a href="#education" class="mobile-link"><span>04</span>Education</a>
+      <a href="#contact" class="mobile-link"><span>05</span>Contact</a>
     </div>
   </header>
 
-  <main class="site-main" id="main-content">
+  <div class="mobile-backdrop" id="mobile-backdrop" hidden aria-hidden="true"></div>
 
-    <section id="hero" class="hero">
+  <main class="site-main" id="main-content" tabindex="-1">
+
+    <!-- Hero -->
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
       <canvas class="hero-gradient-canvas" id="hero-gradient" aria-hidden="true"></canvas>
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <h1 class="hero-name">
-            <span class="hero-intro">Hi, I'm</span>
-            M. Faqih Dwinanda
-          </h1>
-          <h2 class="hero-role">Informatics Engineering Undergraduate</h2>
-          <p class="hero-desc">
-            &mdash; Building clean, purposeful digital experiences.
-          </p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Let's Connect</a>
-            <a href="#projects" class="btn-ghost">See my work</a>
-          </div>
-          <div class="hero-socials">
-            <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-            </a>
-            <a href="mailto:faqih.nanda11@gmail.com" class="social-link" aria-label="Email">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </a>
-          </div>
+
+      <div class="container hero-grid">
+        <div class="hero-meta-strip">
+          <span>PORTFOLIO / MONOGRAPH 2026</span>
+          <span>UNIVERSITAS LAMPUNG</span>
+          <span class="meta-live"><span class="status-sq" aria-hidden="true"></span>OPEN TO COLLABORATION</span>
         </div>
-        <div class="hero-photo-wrap">
-          <img src="dwinan.jpg" alt="M. Faqih Dwinanda" class="hero-photo" width="2643" height="4360" fetchpriority="high" decoding="async">
+
+        <h1 class="hero-display" id="hero-heading">
+          <span class="display-line">
+            <span class="display-mask">M. FAQIH</span>
+          </span>
+          <span class="display-line display-line--offset">
+            <span class="hero-intro-tag" aria-hidden="true">HI, I'M &mdash;</span>
+            <span class="display-mask">DWINANDA</span>
+          </span>
+        </h1>
+
+        <hr class="hairline hairline--draw" aria-hidden="true">
+
+        <div class="hero-spread">
+          <div class="hero-editorial">
+            <p class="hero-kicker"><span class="sr-only">Hi, I'm M. Faqih Dwinanda. </span>Informatics Engineering Undergraduate</p>
+            <p class="hero-desc">&mdash; Building clean, purposeful digital experiences.</p>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn--solid" data-cursor="CONNECT">
+                <span class="btn-roller" data-text="Let's Connect">Let's Connect</span>
+                <svg class="btn-arrow" aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="#projects" class="btn btn--rule" data-cursor="WORK">
+                <span class="btn-roller" data-text="See my work">See my work</span>
+              </a>
+            </div>
+
+            <div class="hero-foot">
+              <ul class="social-strip" aria-label="Social links">
+                <li>
+                  <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="text-link" data-cursor="GITHUB">
+                    GitHub <span aria-hidden="true">&nearr;</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="text-link" data-cursor="LINKEDIN">
+                    LinkedIn <span aria-hidden="true">&nearr;</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:faqih.nanda11@gmail.com" class="text-link" data-cursor="MAIL">
+                    Email <span aria-hidden="true">&nearr;</span>
+                  </a>
+                </li>
+              </ul>
+
+              <p class="kbd-hints" aria-hidden="true">
+                <kbd>T</kbd> Theme &middot; <kbd>C</kbd> Copy email
+              </p>
+            </div>
+          </div>
+
+          <figure class="portrait-plate" data-parallax="18">
+            <div class="portrait-frame">
+              <picture>
+                <source srcset="assets/images/dwinan.webp" type="image/webp">
+                <img
+                  src="assets/images/dwinan.jpg"
+                  alt="Portrait of M. Faqih Dwinanda"
+                  class="portrait-img"
+                  width="960"
+                  height="960"
+                  fetchpriority="high"
+                  decoding="async"
+                >
+              </picture>
+              <span class="plate-corner plate-corner--tl" aria-hidden="true"></span>
+              <span class="plate-corner plate-corner--br" aria-hidden="true"></span>
+            </div>
+            <figcaption class="portrait-caption">
+              <span>FIG. 01 &mdash; M. FAQIH DWINANDA</span>
+              <span>5.4500&deg; S, 105.2667&deg; E</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <h2 class="section-label">About</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
+    <!-- About -->
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <div class="container swiss-split">
+        <aside class="section-rail">
+          <p class="rail-index">01</p>
+          <h2 class="rail-title" id="about-heading">About</h2>
+          <p class="rail-note">Profile, academic standing, and core technical stack.</p>
+        </aside>
+
+        <div class="section-content">
+          <p class="editorial-lead reveal">
             I'm an <strong class="hl">Informatics Engineering</strong> undergraduate at Universitas Lampung
             (GPA 3.96/4.00) focused on <strong class="hl">web development</strong> and
             <strong class="hl">system design</strong>. I build and maintain projects from UI to database,
             and I work well in <strong class="hl">team-based</strong> academic and organizational settings.
           </p>
-        </div>
-        <div class="skills-block">
-          <div class="skills-group">
-            <h3 class="skills-label">Languages</h3>
-            <div class="tags">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">PHP</span>
-              <span class="tag">Python</span>
-              <span class="tag">Java</span>
-              <span class="tag">C++</span>
+
+          <dl class="metrics-bar reveal">
+            <div class="metric-cell">
+              <dt>Academic Standing</dt>
+              <dd>3.96<span class="metric-unit"> / 4.00 GPA</span></dd>
             </div>
-          </div>
-          <div class="skills-group">
-            <h3 class="skills-label">Tools & Frameworks</h3>
-            <div class="tags">
-              <span class="tag">Laravel</span>
-              <span class="tag">Git & GitHub</span>
-              <span class="tag">Figma</span>
-              <span class="tag">MySQL</span>
-              <span class="tag">VS Code</span>
-              <span class="tag">WordPress</span>
+            <div class="metric-cell">
+              <dt>Languages</dt>
+              <dd>07<span class="metric-unit"> Core</span></dd>
             </div>
+            <div class="metric-cell">
+              <dt>Tools &amp; Frameworks</dt>
+              <dd>06<span class="metric-unit"> Production</span></dd>
+            </div>
+          </dl>
+
+          <div class="spec-block reveal">
+            <div class="spec-header">
+              <h3 class="spec-heading">Technical Specification</h3>
+              <div class="spec-filters" role="group" aria-label="Filter technical skills">
+                <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" class="filter-btn" data-filter="language" aria-pressed="false">Languages</button>
+                <button type="button" class="filter-btn" data-filter="tool" aria-pressed="false">Tools &amp; Frameworks</button>
+              </div>
+            </div>
+
+            <ul class="spec-matrix" id="spec-matrix" aria-label="Languages, tools, and frameworks">
+              <li class="spec-cell" data-cat="language"><span class="spec-num">01</span><span class="spec-cat">LANG</span><span class="spec-name">HTML</span></li>
+              <li class="spec-cell" data-cat="language"><span class="spec-num">02</span><span class="spec-cat">LANG</span><span class="spec-name">CSS</span></li>
+              <li class="spec-cell" data-cat="language"><span class="spec-num">03</span><span class="spec-cat">LANG</span><span class="spec-name">JavaScript</span></li>
+              <li class="spec-cell" data-cat="language"><span class="spec-num">04</span><span class="spec-cat">LANG</span><span class="spec-name">PHP</span></li>
+              <li class="spec-cell" data-cat="language"><span class="spec-num">05</span><span class="spec-cat">LANG</span><span class="spec-name">Python</span></li>
+              <li class="spec-cell" data-cat="language"><span class="spec-num">06</span><span class="spec-cat">LANG</span><span class="spec-name">Java</span></li>
+              <li class="spec-cell" data-cat="language"><span class="spec-num">07</span><span class="spec-cat">LANG</span><span class="spec-name">C++</span></li>
+              <li class="spec-cell" data-cat="tool"><span class="spec-num">08</span><span class="spec-cat">TOOL</span><span class="spec-name">Laravel</span></li>
+              <li class="spec-cell" data-cat="tool"><span class="spec-num">09</span><span class="spec-cat">TOOL</span><span class="spec-name">Git &amp; GitHub</span></li>
+              <li class="spec-cell" data-cat="tool"><span class="spec-num">10</span><span class="spec-cat">TOOL</span><span class="spec-name">Figma</span></li>
+              <li class="spec-cell" data-cat="tool"><span class="spec-num">11</span><span class="spec-cat">TOOL</span><span class="spec-name">MySQL</span></li>
+              <li class="spec-cell" data-cat="tool"><span class="spec-num">12</span><span class="spec-cat">TOOL</span><span class="spec-name">VS Code</span></li>
+              <li class="spec-cell" data-cat="tool"><span class="spec-num">13</span><span class="spec-cat">TOOL</span><span class="spec-name">WordPress</span></li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="section">
-      <h2 class="section-label">Experience</h2>
-      <div class="card-list">
+    <!-- Experience -->
+    <section id="experience" class="section" aria-labelledby="experience-heading">
+      <div class="container swiss-split">
+        <aside class="section-rail">
+          <p class="rail-index">02</p>
+          <h2 class="rail-title" id="experience-heading">Experience</h2>
+          <p class="rail-note">Leadership, communication, and organizational web execution.</p>
+        </aside>
 
-        <div class="card">
-          <span class="card-date">Mar 2026 — Present</span>
-          <div class="card-body">
-            <h3 class="card-title">Program Lead, Himatro on Social Media</h3>
-            <p class="card-org">Himpunan Mahasiswa Teknik Elektro (Himatro), Universitas Lampung</p>
-            <ul class="card-desc">
-              <li>Led "Himatro on Social Media" to manage and publish organizational information across digital platforms.</li>
-              <li>Designed social media content and website wireframes in Figma.</li>
-              <li>Managed the Himatro website on WordPress to support organizational branding.</li>
-            </ul>
+        <div class="section-content">
+          <div class="ledger">
+            <article class="ledger-row reveal">
+              <div class="ledger-meta">
+                <span class="ledger-idx">01</span>
+                <p class="ledger-date">Mar 2026 &mdash; Present</p>
+              </div>
+              <div class="ledger-body">
+                <h3 class="ledger-title">Program Lead, Himatro on Social Media</h3>
+                <p class="ledger-org">Himpunan Mahasiswa Teknik Elektro (Himatro), Universitas Lampung</p>
+                <ul class="ledger-list">
+                  <li>Led "Himatro on Social Media" to manage and publish organizational information across digital platforms.</li>
+                  <li>Designed social media content and website wireframes in Figma.</li>
+                  <li>Managed the Himatro website on WordPress to support organizational branding.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="ledger-row reveal">
+              <div class="ledger-meta">
+                <span class="ledger-idx">02</span>
+                <p class="ledger-date">Oct 2025</p>
+              </div>
+              <div class="ledger-body">
+                <h3 class="ledger-title">Master of Ceremony</h3>
+                <p class="ledger-org">EEA National Seminar</p>
+                <ul class="ledger-list">
+                  <li>Facilitated a smooth event flow and kept audience engagement high throughout.</li>
+                  <li>Demonstrated strong public speaking, communication, and on-stage coordination.</li>
+                </ul>
+              </div>
+            </article>
           </div>
         </div>
-
-        <div class="card">
-          <span class="card-date">Oct 2025</span>
-          <div class="card-body">
-            <h3 class="card-title">Master of Ceremony</h3>
-            <p class="card-org">EEA National Seminar</p>
-            <ul class="card-desc">
-              <li>Facilitated a smooth event flow and kept audience engagement high throughout.</li>
-              <li>Demonstrated strong public speaking, communication, and on-stage coordination.</li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2 class="section-label">Projects</h2>
-      <div class="card-list">
+    <!-- Projects -->
+    <section id="projects" class="section section--projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="projects-head reveal">
+          <div class="projects-head-left">
+            <span class="rail-index">03</span>
+            <h2 class="rail-title" id="projects-heading">Projects</h2>
+          </div>
+          <p class="projects-count">SELECTED WORKS &mdash; 02</p>
+        </div>
 
-        <a href="https://github.com/Dwinan/project-ArtSpace" target="_blank" rel="noopener noreferrer" class="card card-link">
-          <span class="card-date">2026</span>
-          <div class="card-body">
-            <h3 class="card-title card-title--link">
-              ArtSpace
-              <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </h3>
-            <p class="card-org">Web-based Marketplace Platform</p>
-            <ul class="card-desc">
-              <li>Developed a marketplace for creative products & services with a clean, responsive UI.</li>
-              <li>Implemented MySQL schemas for secure data handling and CRUD operations.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">Laravel</span>
-              <span class="tag">Tailwind CSS</span>
-              <span class="tag">MySQL</span>
+        <div class="dossier-stack">
+
+          <!-- Project 01: ArtSpace -->
+          <article class="dossier reveal" data-cursor="GITHUB">
+            <div class="dossier-copy">
+              <div class="dossier-meta">
+                <span>PROJECT 01</span>
+                <span>2026</span>
+                <span>WEB-BASED MARKETPLACE PLATFORM</span>
+              </div>
+
+              <h3 class="dossier-title">
+                <a
+                  href="https://github.com/Dwinan/project-ArtSpace"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="dossier-link"
+                >
+                  <span>ArtSpace</span>
+                  <span class="kinetic-arrow" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </span>
+                  <span class="sr-only"> — View repository on GitHub (opens in a new tab)</span>
+                </a>
+              </h3>
+
+              <ul class="ledger-list dossier-bullets">
+                <li>Developed a marketplace for creative products &amp; services with a clean, responsive UI.</li>
+                <li>Implemented MySQL schemas for secure data handling and CRUD operations.</li>
+              </ul>
+
+              <div class="dossier-footer">
+                <ul class="inline-specs" aria-label="Technologies used">
+                  <li>Laravel</li>
+                  <li>Tailwind CSS</li>
+                  <li>MySQL</li>
+                </ul>
+                <span class="dossier-cta" aria-hidden="true">Repository &nearr;</span>
+              </div>
             </div>
-          </div>
-        </a>
 
-        <a href="https://morse-code-project-flame.vercel.app/" target="_blank" rel="noopener noreferrer" class="card card-link">
-          <span class="card-date">2026</span>
-          <div class="card-body">
-            <h3 class="card-title card-title--link">
-              Morse Code Translator
-              <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </h3>
-            <p class="card-org">Web-based Morse Code Translator Platform</p>
-            <ul class="card-desc">
-              <li>Developed a translator for Morse Code with a clean, responsive UI.</li>
-              <li>Implemented Finite State Machine Concept for the system.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
+            <!-- ArtSpace system diagram -->
+            <div class="specimen specimen--blueprint" aria-hidden="true">
+              <div class="specimen-bar">
+                <span>SPECIMEN 01 / SCHEMA &amp; UI GRID</span>
+                <span>MVC + CRUD</span>
+              </div>
+              <div class="blueprint-stage">
+                <div class="bp-layer bp-layer--ui">
+                  <span class="bp-tag">UI / CATALOG</span>
+                  <div class="bp-wire-grid">
+                    <span></span><span></span><span></span>
+                    <span class="bp-wide"></span><span></span>
+                  </div>
+                </div>
+                <div class="bp-connector">
+                  <span>ROUTES &middot; CONTROLLERS</span>
+                </div>
+                <div class="bp-layer bp-layer--db">
+                  <span class="bp-tag">MYSQL / ENTITIES</span>
+                  <div class="bp-tables">
+                    <div><strong>users</strong><span>id &middot; role</span></div>
+                    <div><strong>artworks</strong><span>id &middot; price</span></div>
+                    <div><strong>orders</strong><span>fk &middot; status</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </a>
+          </article>
 
+          <!-- Project 02: Morse Code Translator -->
+          <article class="dossier reveal" data-cursor="LIVE APP">
+            <div class="dossier-copy">
+              <div class="dossier-meta">
+                <span>PROJECT 02</span>
+                <span>2026</span>
+                <span>WEB-BASED MORSE CODE TRANSLATOR PLATFORM</span>
+              </div>
+
+              <h3 class="dossier-title">
+                <a
+                  href="https://morse-code-project-flame.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="dossier-link"
+                >
+                  <span>Morse Code Translator</span>
+                  <span class="kinetic-arrow" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </span>
+                  <span class="sr-only"> — Launch live web app (opens in a new tab)</span>
+                </a>
+              </h3>
+
+              <ul class="ledger-list dossier-bullets">
+                <li>Developed a translator for Morse Code with a clean, responsive UI.</li>
+                <li>Implemented Finite State Machine Concept for the system.</li>
+              </ul>
+
+              <div class="dossier-footer">
+                <ul class="inline-specs" aria-label="Technologies used">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                </ul>
+                <span class="dossier-cta" aria-hidden="true">Live App &nearr;</span>
+              </div>
+            </div>
+
+            <!-- Morse FSM demo -->
+            <div class="specimen specimen--fsm" id="fsm-specimen">
+              <div class="specimen-bar">
+                <span>SPECIMEN 02 / LIVE FSM DECODER</span>
+                <span class="fsm-mode-badge" id="fsm-state-readout">STATE: S0_IDLE</span>
+              </div>
+
+              <div class="fsm-stage">
+                <div class="fsm-nodes" aria-hidden="true">
+                  <div class="fsm-node is-lit" data-node="idle">
+                    <span>S0</span>
+                    <strong>IDLE</strong>
+                  </div>
+                  <span class="fsm-edge">&rarr;</span>
+                  <div class="fsm-node" data-node="signal">
+                    <span>S1</span>
+                    <strong>&middot; / &mdash;</strong>
+                  </div>
+                  <span class="fsm-edge">&rarr;</span>
+                  <div class="fsm-node" data-node="decode">
+                    <span>S2</span>
+                    <strong>CHAR</strong>
+                  </div>
+                </div>
+
+                <div class="fsm-monitor" aria-live="polite">
+                  <div class="fsm-buffer">
+                    <span class="fsm-label">BUFFER</span>
+                    <code id="fsm-morse">-..</code>
+                  </div>
+                  <div class="fsm-output">
+                    <span class="fsm-label">DECODED</span>
+                    <code id="fsm-decoded">D</code>
+                  </div>
+                </div>
+
+                <div class="fsm-controls" role="group" aria-label="Interactive Morse state preview">
+                  <button type="button" class="fsm-btn" data-fsm-input="." data-cursor="DOT">DOT (&middot;)</button>
+                  <button type="button" class="fsm-btn" data-fsm-input="-" data-cursor="DASH">DASH (&mdash;)</button>
+                  <button type="button" class="fsm-btn" data-fsm-action="commit" data-cursor="DECODE">DECODE</button>
+                  <button type="button" class="fsm-btn" data-fsm-action="auto" id="fsm-auto-btn" data-cursor="AUTO">AUTO</button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
-    <section id="education" class="section">
-      <h2 class="section-label">Education</h2>
-      <div class="card-list">
+    <!-- Education -->
+    <section id="education" class="section" aria-labelledby="education-heading">
+      <div class="container swiss-split">
+        <aside class="section-rail">
+          <p class="rail-index">04</p>
+          <h2 class="rail-title" id="education-heading">Education</h2>
+          <p class="rail-note">Formal academic chronology.</p>
+        </aside>
 
-        <div class="card">
-          <span class="card-date">2024 — Present</span>
-          <div class="card-body">
-            <h3 class="card-title">Universitas Lampung</h3>
-            <p class="card-org">Informatics Engineering Undergraduate &mdash; GPA 3.96 / 4.00</p>
-          </div>
+        <div class="section-content">
+          <ol class="chronology">
+            <li class="chrono-row chrono-row--head" aria-hidden="true">
+              <span>Period</span>
+              <span>Institution</span>
+              <span>Program &amp; Standing</span>
+            </li>
+
+            <li class="chrono-row reveal">
+              <span class="chrono-date">2024 &mdash; Present</span>
+              <h3 class="chrono-school">Universitas Lampung</h3>
+              <p class="chrono-detail">Informatics Engineering Undergraduate &mdash; GPA 3.96 / 4.00</p>
+            </li>
+
+            <li class="chrono-row reveal">
+              <span class="chrono-date">2021 &mdash; 2024</span>
+              <h3 class="chrono-school">SMA Negeri 1 Natar</h3>
+              <p class="chrono-detail">Senior High School</p>
+            </li>
+
+            <li class="chrono-row reveal">
+              <span class="chrono-date">2018 &mdash; 2021</span>
+              <h3 class="chrono-school">SMP Negeri 1 Natar</h3>
+              <p class="chrono-detail">Junior High School</p>
+            </li>
+          </ol>
         </div>
-
-        <div class="card">
-          <span class="card-date">2021 — 2024</span>
-          <div class="card-body">
-            <h3 class="card-title">SMA Negeri 1 Natar</h3>
-            <p class="card-org">Senior High School</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="card-date">2018 — 2021</span>
-          <div class="card-body">
-            <h3 class="card-title">SMP Negeri 1 Natar</h3>
-            <p class="card-org">Junior High School</p>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <section id="contact" class="section section--contact">
-      <h2 class="section-label">Contact</h2>
-      <div class="contact-inner">
-        <p class="contact-heading">Turning ideas into <span>reality.</span></p>
-        <p class="contact-sub">
-          Open to collaboration, projects, and conversations.
-          <br>Reach me by email or on my social profiles.
+    <!-- Contact -->
+    <section id="contact" class="section section--contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-top reveal">
+          <span class="rail-index">05</span>
+          <h2 class="rail-title" id="contact-heading">Contact</h2>
+        </div>
+
+        <p class="contact-display reveal">
+          Turning ideas<br>into <span>reality.</span>
         </p>
-        <div class="contact-actions">
-          <a href="mailto:faqih.nanda11@gmail.com" class="btn-primary" id="contact-email-btn">
-            Send an Email
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-          <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
-          <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub</a>
+
+        <div class="contact-grid reveal">
+          <p class="contact-sub">
+            Open to collaboration, projects, and conversations.<br>
+            Reach me by email or on my social profiles.
+          </p>
+
+          <div class="contact-panel">
+            <div class="email-strip">
+              <span class="email-label">DIRECT EMAIL</span>
+              <a href="mailto:faqih.nanda11@gmail.com" class="email-address" id="contact-email-btn" data-cursor="MAIL">
+                faqih.nanda11@gmail.com
+              </a>
+            </div>
+
+            <div class="contact-actions">
+              <a href="mailto:faqih.nanda11@gmail.com" class="btn btn--solid" data-cursor="MAIL">
+                <span class="btn-roller" data-text="Send an Email">Send an Email</span>
+                <svg class="btn-arrow" aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+
+              <button type="button" class="btn btn--rule" id="copy-email-btn" data-cursor="COPY">
+                <span class="btn-roller" id="copy-email-label" data-text="Copy Email">Copy Email</span>
+              </button>
+
+              <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer" class="btn btn--rule" data-cursor="LINKEDIN">
+                <span class="btn-roller" data-text="LinkedIn">LinkedIn</span>
+                <span aria-hidden="true">&nearr;</span>
+              </a>
+
+              <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer" class="btn btn--rule" data-cursor="GITHUB">
+                <span class="btn-roller" data-text="GitHub">GitHub</span>
+                <span aria-hidden="true">&nearr;</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -254,17 +574,21 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <p><span>&copy; 2026 M. Faqih Dwinanda</span></p>
-      <div class="footer-links">
+    <div class="container footer-inner">
+      <p class="footer-copy">&copy; 2026 M. Faqih Dwinanda</p>
+      <p class="footer-colophon">HANDCRAFTED &middot; HTML / CSS / JS &middot; ZERO FRAMEWORKS</p>
+      <nav class="footer-links" aria-label="Footer links">
         <a href="https://github.com/Dwinan" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://linkedin.com/in/faqihdwinan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="mailto:faqih.nanda11@gmail.com">Email</a>
-      </div>
+        <a href="#hero" class="footer-top">Top &uarr;</a>
+      </nav>
     </div>
   </footer>
 
-  <script src="gradient-engine.js"></script>
-  <script src="main.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/vendor/gradient-engine.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
