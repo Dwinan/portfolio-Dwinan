@@ -1,24 +1,25 @@
-# M. Faqih Dwinanda — Editorial Portfolio
+# M. Faqih Dwinanda | Editorial Portfolio
 
 Live site: https://portfolio-dwinan.vercel.app/
 
 ## Architecture & Direction
 
-A dependency-free static portfolio built around a Swiss International typographic grid, self-hosted typography (`Geist` & `Geist Mono`), and dual curated color editions (**Obsidian Mist** and **Archival Paper**) synchronized live with the ambient WebGL mist renderer.
+A dependency-free static software engineering portfolio built around a Swiss International typographic grid, self-hosted typography (`Geist` and `Geist Mono`), and dual curated color editions (**Obsidian Mist** and **Archival Paper**) documented in [DESIGN.md](DESIGN.md).
 
 ### Highlights
 
-- **Zero build step & self-hosted assets** — No frameworks, no CDN font blocking; portrait optimized to 29 KB WebP + 69 KB progressive JPEG (96% smaller than the original 783 KB image).
-- **Dual Edition Switcher (`[T]`)** — Instant Obsidian Mist / Archival Paper mode with live WebGL mist shader palette synchronization and WCAG AA+ verified contrast across both editions.
-- **Interactive Engineering Specimens** — Authentic architectural blueprints for *ArtSpace* and a live interactive Finite State Machine (FSM) Morse decoder right inside the *Morse Code Translator* project dossier.
-- **Editorial Polish** — Masked display typography reveal, hairline-collapsed filterable skill matrix, live Bandar Lampung (WIB) telemetry clock, one-click email clipboard copy (`[C]`), and fine-pointer architectural cursor.
+- **Zero build step & device-aware performance:** Static CSS radial mist on phones and low-spec devices (`0` WebGL bytes loaded), with lazy-loaded desktop WebGL mist synchronized live to the active color edition.
+- **Dual Edition Switcher:** Instant Obsidian Mist / Archival Paper toggle with WCAG AA+ verified text and interactive border contrast in both editions.
+- **Verified Engineering Showcase:** Features `Eventory`, `MoonlightPDF`, `ArtSpace`, and `Morse Code Translator` with factual technical spec sheets, an interactive FSM Morse decoder, and direct GitHub/live links.
+- **Intentional 3-State Responsive Layout:** Desktop split rails, compact tablet hero spread, and mobile identity card hero + elevated project cards with >= 44px tap targets, focus-trapped mobile drawer, and one-click email copy feedback.
 
 ## Directory Structure
 
 ```text
-portfolio-dwinan-v4/
-├── index.html
+portfolio-Dwinan/
+├── DESIGN.md
 ├── README.md
+├── index.html
 ├── docs/
 │   └── PRODUCT.md
 ├── assets/
@@ -40,4 +41,4 @@ portfolio-dwinan-v4/
 
 ## Local Preview
 
-Serve the root directory with any static server (`npx serve .`, `python3 -m http.server`, or VS Code Live Server).
+Serve the root directory with any static HTTP server (`python -m http.server 4173`, `npx serve .`, or VS Code Live Server).
